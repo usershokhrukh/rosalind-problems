@@ -1,28 +1,19 @@
-def analyzeSequences(sequences):
-   minSequence = min(sequences);
-   for i in range(len(minSequence)-1, 0, -1):
-      for start in range(len(minSequence) - i + 1):
-         motif = minSequence[start: start + i]
-         if all(motif in seq for seq in sequences):
-            print(motif)
-            return motif;
-   return ""
-def compoundSeq(data, indexesR):
-   sequences = []
-   for i in range(len(indexesR)):
-        start = indexesR[i]
-        end = indexesR[i+1] if i+1 < len(indexesR) else len(data)
-        seq = "".join(data[start+1:end])
-        sequences.append(seq)
-   analyzeSequences(sequences)
+import math
 
-def analyzeR(data):
-  indexes_rosalind = [];
-  for i, indexR in enumerate(data):
-    if(indexR.startswith(">")):
-      indexes_rosalind.append(i)
-  compoundSeq(data, indexes_rosalind)
+def analyzeLif(data):
+   k = int(data[0]);
+   N = int(data[1]);
+   p = 0.25;
+   n = 2**k;
+   result = 0;
+   for i in range(N):
+      #$$P(i) = \binom{n}{i} \cdot p^i \cdot (1-p)^{n-i}$$
+      c = math.comb(n, i);
+      result += c * (p**i) * (0.75**(n-i));
+      
+   final = 1-result;
+   print(round(final, 3))
 
-with open("rosalind_lcsm.txt", "r") as file:
-  data = [line.strip() for line in file.readlines()];
-  analyzeR(data)
+with open("rosalind_lia.txt", "r") as file:
+   data = file.read().strip().split(); 
+   analyzeLif(data)
