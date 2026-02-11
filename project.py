@@ -1,19 +1,24 @@
-import math
+import requests
+import re
 
-def analyzeLif(data):
-   k = int(data[0]);
-   N = int(data[1]);
-   p = 0.25;
-   n = 2**k;
-   result = 0;
-   for i in range(N):
-      #$$P(i) = \binom{n}{i} \cdot p^i \cdot (1-p)^{n-i}$$
-      c = math.comb(n, i);
-      result += c * (p**i) * (0.75**(n-i));
+def getResult(text, i):
+   motif = r"(?=(N[^P][ST][^P]))";
+   result = [];
+   for match in re.finditer(motif, text):
+      result.append(match.start() + 1);
+   if(len(result) != 0):
+      print(i)
+      print(*result)
+
+def analyze(data):
+   for i in data:
+      ID = i.split("_")[0];
+      response = requests.get(f"https://www.uniprot.org/uniprotkb/{ID}.fasta");
+      lines = response.text.strip().split('\n')
+      text = "".join(lines[1:])
+      getResult(text, i);
       
-   final = 1-result;
-   print(round(final, 3))
 
-with open("rosalind_lia.txt", "r") as file:
-   data = file.read().strip().split(); 
-   analyzeLif(data)
+with open("rosalind_mprt.txt", "r") as file:
+   data = file.read().strip().split();
+   analyze(data)
