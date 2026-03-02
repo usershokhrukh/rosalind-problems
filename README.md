@@ -1,83 +1,19 @@
-# RNA Splicing
+# Enumerating k-mers Lexicographically
 
 ### Problem Description
-```
-rna_codon_table = {
-    # U bilan boshlanadiganlar
-    "UUU": "F",
-    "UUC": "F",
-    "UUA": "L",
-    "UUG": "L",
-    "UCU": "S",
-    "UCC": "S",
-    "UCA": "S",
-    "UCG": "S",
-    "UAU": "Y",
-    "UAC": "Y",
-    "UAA": "Stop",
-    "UAG": "Stop",
-    "UGU": "C",
-    "UGC": "C",
-    "UGA": "Stop",
-    "UGG": "W",
-    # C bilan boshlanadiganlar
-    "CUU": "L",
-    "CUC": "L",
-    "CUA": "L",
-    "CUG": "L",
-    "CCU": "P",
-    "CCC": "P",
-    "CCA": "P",
-    "CCG": "P",
-    "CAU": "H",
-    "CAC": "H",
-    "CAA": "Q",
-    "CAG": "Q",
-    "CGU": "R",
-    "CGC": "R",
-    "CGA": "R",
-    "CGG": "R",# A bilan boshlanadiganlar
-    "AUU": "I",
-    "AUC": "I",
-    "AUA": "I",
-    "AUG": "M",
-    "ACU": "T",
-    "ACC": "T",
-    "ACA": "T",
-    "ACG": "T",
-    "AAU": "N",
-    "AAC": "N",
-    "AAA": "K",
-    "AAG": "K",
-    "AGU": "S",
-    "AGC": "S",
-    "AGA": "R",
-    "AGG": "R",
-    # G bilan boshlanadiganlar
-    "GUU": "V",
-    "GUC": "V",
-    "GUA": "V",
-    "GUG": "V",
-    "GCU": "A",
-    "GCC": "A",
-    "GCA": "A",
-    "GCG": "A",
-    "GAU": "D",
-    "GAC": "D",
-    "GAA": "E",
-    "GAG": "E",
-    "GGU": "G",
-    "GGC": "G",
-    "GGA": "G",
-    "GGG": "G",
-}
-```
-In first part we have a DNA string, on the other lines there are **introns** which we should replace in DNA and leave only **exons**, result would be DNA string in existence exons.
-After all, we must transcript to **RNA** then translate to proteins, so after transcription, it matches with codons
+
+Given collection of symbols ordered in English alphabet, then we have number which tells us length of combinations
+
+I have used **itertools** python library for combination them, I've learned these itertools methods work with analyzing:
+
+1. **itertools.permutations** => it doesn't repeat used symbols, we can not use **"AA"** 
+
+2. **itertools.combinations** => it makes combinations not **unique**, if it unique, then we may use "ACG" and "CGA", but we may not, for itself these are same
+
+3. **itertools.product** => in this problem we worked with this one, it can be used to **all variants** (AA, AC, AG, GA, AT...) 
 
 ### Mathematical Logic
 
-1. **Read FASTA file** 
-2. **remove introns in DNA** 
-3. **Turn DNA exon string to RNA**
-4. **Math RNA codons into proteins**
+1. **Identify sequence and length of combination** 
+2. **use itertools.product(seq, repeat=n) for get all k-mers** 
+3. **Print result with no space**
