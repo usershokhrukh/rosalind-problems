@@ -1,26 +1,16 @@
-# Genome Assembly as Shortest Superstring
+# Perfect Matchings and RNA Secondary Structures
 
 ### Problem Description
 
-Genome Assembly, given DNA strings, each has **supersting** in end or start of string. We should **compound** each string.
-For example => we have:
-```
->Rosalind_56
-ATTAGACCTG
->Rosalind_57
-CCTGCCGGAA
->Rosalind_58
-AGACCTGCCG
->Rosalind_59
-GCCGGAATAC
-```
-**ATTAGACCTG** has **AGACCTG** at end, and **AGACCTGCCG** has at start, so we should compound them, result => **ATTAGACCTGCCG**, in second loop we should work with **ATTAGACCTGCCG** not with **ATTAGACCTG**, in second loop, **ATTAGACCTGCCG** compares with **CCTGCCGGAA** each has **CCTGCCG** at start and end
+Perfect Matchings and RNA Secondary Structures usually want to identify how **mRNA** strong enough after **transcription**
 
+We are checking amount of possibilities **shapes of mRNA**, we know that after transcription message RNA exits from nucleus of cell, and for making protein cell should protect a DNA copy from other chemicals in cytoplasm. 
 
-Rosalind gave us dataset, every string has it's superstring, so we can analyze without some bags
+It folds itself into shapes and translates to protein safely. But how then ribosome reads this form? Ribosome makes it into "yarn", and reads from 5' to 3'
 
 ### Algorithm steps
 
-1. **Read FASTA file**
-2. **Find first matching string, which length of superstring longer than half of string** 
-3. **Print shortest superstring** 
+1. **Understand what going on**
+2. **Read FASTA file** 
+3. **Count dataset, and use factorial to combination, n! * m!** 
+4. **Multiply each possibilities and print**
