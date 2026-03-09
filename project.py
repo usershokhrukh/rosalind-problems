@@ -1,11 +1,11 @@
 import math
 
 def alg_perfect_match(seq):
-  adenin = seq.count("A")
+  adenine = seq.count("A")
   guanine = seq.count("G")
-  adening_fact = math.factorial(adenin)
+  adenine_fact = math.factorial(adenine)
   guanine_fact = math.factorial(guanine)
-  result = adening_fact * guanine_fact
+  result = adenine_fact * guanine_fact
   return result
 
 with open("rosalind_pmch.txt") as file:
