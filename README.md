@@ -1,16 +1,19 @@
-# Perfect Matchings and RNA Secondary Structures
+# Partial Permutations
 
 ### Problem Description
+This problem usually helps to identify **Gen orders**, scientist use this analyzing to predict **Gen orders**. We should know how DNA changed after mutations, and it main help to us that, we can prevent the diseases
 
-Perfect Matchings and RNA Secondary Structures usually want to identify how **mRNA** strong enough after **transcription**
+I didn't use the **math.factorial** because it too slow to counting large numbers, and with for loop we can module each multiply to avoid **memory leak**
 
-We are checking amount of possibilities **shapes of mRNA**, we know that after transcription message RNA exits from nucleus of cell, and for making protein cell should protect a DNA copy from other chemicals in cytoplasm. 
+which formula I used? 
 
-It folds itself into shapes and translates to protein safely. But how then ribosome reads this form? Ribosome makes it into "yarn", and reads from 5' to 3'
+$$P(n, k) = \frac{n!}{(n-k)!}$$
+
+
 
 ### Algorithm steps
 
-1. **Understand what going on**
-2. **Read FASTA file** 
-3. **Count dataset, and use factorial to combination, n! * m!** 
-4. **Multiply each possibilities and print**
+1. **Learn about Permutations**
+2. **Count safely, with for loop** 
+3. **Use formula** 
+4. **Print last 6 numbers**

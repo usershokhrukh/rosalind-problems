@@ -1,14 +1,13 @@
-import math
+def func_pper(data):
+    n = int(data[0])
+    k = int(data[1])
 
-def alg_perfect_match(seq):
-  adenine = seq.count("A")
-  guanine = seq.count("G")
-  adenine_fact = math.factorial(adenine)
-  guanine_fact = math.factorial(guanine)
-  result = adenine_fact * guanine_fact
-  return result
+    permutations = 1
+    for i in range(k):
+        permutations = (permutations * (n - i)) % 1_000_000
+    return permutations
 
-with open("rosalind_pmch.txt") as file:
-  data = [part for part in file.read().strip().split() if not part.startswith(">")]
-  seq = "".join(data[:])
-  print(alg_perfect_match(seq))
+
+with open("rosalind_pper.txt", "r") as file:
+    nums = file.read().strip().split()
+    print(func_pper(nums))
