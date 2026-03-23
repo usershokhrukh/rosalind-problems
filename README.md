@@ -1,17 +1,26 @@
-# Introduction to Random Strings
+# Problem: Enumerating Oriented Gene Orderings
 
-### Problem Description
-Introduction to Random Strings helps to identify probability of sequence, **with each given GC-content**, for example if we have **0.129** GC-content, in **ACGATACAA**, then probability of G/C would be **x / 2** => 0.129 / 2 = 0.0645, AT-content would be **(1 - x) / 2** => 1 - 0.129 = 0.871 / 2 = 0.4355
+### The Mission
+  Given number (n <= 6), we should combine each number to n, after that for each combination we must print them by -1, so if we get n = 2, then combinations would be (1, 2) and (2, 1), so 
+  multiplying them by -1, we get another combination (1, 2), (-1, 2), (-1, -2), (1, -2), (2, 1), (-2, 1), (-2, -1), (2, -1). 
 
-So, we have probabilities of each nucleotides, and with sequence order we can easily sum them up, but if sequence is too long, result will be with many zeros. Working with logarithm10, why 10? because it helps to know number of zeros
+  By this problem we can get combinations of gene orders, by evolution one gene order like (1, 2) could transform to (-1, 2) creating one life
+  
+### Technical Approach
+| Phase | Action | Tool/Method |
+| :--- | :--- | :--- |
+| **Understand problem condition** | Search, Google it | brain, AI |
+| **Create file for large results** | Create simply txt file | file system |
+| **Get Data** | File reading | `strip().split()` |
+| **Core Processing** | Factorial & Libraries | `itertools` module |
+| **Output Mgmt** | Large data handling | `with open() as file` |
 
-**Why we need this problem, and what it helps to?**:
-Scientists want to know about gene, and they search it to understand is it a miracle or noise?, is gene actually helps in cell or it is just after mutations
+### Complexity
+**Time complexity:** $O(n! \cdot 2^n)$ - because analyzing each permutation is required 
+**Space complexity:** $O(n)$ - writing len(n) list for file in each loop, gives O(n) space complexity. 
 
 
-### Algorithm steps
-
-1. **Search about problem, and try to understand it**
-2. **Read data, but with no just one line, read each line and sort them** 
-3. **Use log10 and save like {:.3f} format, for Rosalind requirements** 
-4. **Print each log10 result probabilities**
+### Execution Flow
+1. **Initialize, save range(n) to list:** `signs = list(range(1, n+1))`
+2. **Compute:** Calculate $n! \times 2^n$ for amount of final combinations by mathematics.
+3. **Stream:** Use a generator to write results to `result.txt`.
