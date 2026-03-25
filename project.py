@@ -1,17 +1,28 @@
-import itertools
-
-def perm_sign(n):
-    signs = list(range(1, n+1))
-    perms =  list(itertools.permutations(signs))
-    pows = 2 ** n
-
-    with open("result.txt", "a") as file:
-        file.write(f"{len(perms) * pows}\n")
-        for p in perms:
-            for sign in itertools.product([-1, 1], repeat=n):
-                test = [p[i] * sign[i] for i in range(n)]
-                result = " ".join(map(str, test))
-                file.write(f"{result}\n")
-with open("rosalind_sign.txt", "r") as file:    
-    n = int(file.read().strip())
-    perm_sign(n)
+with open("rosalind_sseq.txt", "r") as f:
+    parts = f.read().split(">")
+    s = "".join(line.strip() for line in parts[1].splitlines()[1:])
+    t = "".join(line.strip() for line in parts[2].splitlines()[1:])
+    pos = 0
+    results = []
+    n = len(t)
+    for char in t:
+        let = s[pos:].find(char) + pos +1
+        exist = s[pos:].find(char)
+        t_in_s = s[pos:].find(t) +1
+        if let >= pos:
+            pos = let
+        if t_in_s == let:
+            pos += n
+        if(exist != -1):
+            results.append(let)
+    if(len(results) == n):
+        print(*(results))
+    else:
+        results = []
+        pos = 0
+        for char in t:
+            let = s[pos:].find(char) + pos +1
+            if(let >= pos):
+                pos = let
+            results.append(let)
+        print(*(results))
