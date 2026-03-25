@@ -34,7 +34,7 @@ Output
 
 ---
 
-## Loyiha Haqida
+## About
 This problem helps to find mutations of **exons**, it is mRNA sequence, and translates to amino acids, then protein. Imagine you have many DNA sequence of organisms and translatable mRNA chain to protein. After some years maybe, the first DNA code could mutate to another, and we can find where it was mutated by this problem, also compare one mutate from another.
 
 ## Algorithm Steps
