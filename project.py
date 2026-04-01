@@ -1,28 +1,38 @@
-with open("rosalind_sseq.txt", "r") as f:
-    parts = f.read().split(">")
-    s = "".join(line.strip() for line in parts[1].splitlines()[1:])
-    t = "".join(line.strip() for line in parts[2].splitlines()[1:])
-    pos = 0
-    results = []
-    n = len(t)
-    for char in t:
-        let = s[pos:].find(char) + pos +1
-        exist = s[pos:].find(char)
-        t_in_s = s[pos:].find(t) +1
-        if let >= pos:
-            pos = let
-        if t_in_s == let:
-            pos += n
-        if(exist != -1):
-            results.append(let)
-    if(len(results) == n):
-        print(*(results))
-    else:
-        results = []
-        pos = 0
-        for char in t:
-            let = s[pos:].find(char) + pos +1
-            if(let >= pos):
-                pos = let
-            results.append(let)
-        print(*(results))
+def rosalind_tran(seq_arr):
+    transitions = 0
+    transversions = 0
+    purines = {'A': 'A', 'G': 'G'}
+    pyrimidines = {'C': 'C', 'T': 'T'}
+    seq_1 = seq_arr[0]
+    seq_2 = seq_arr[1]
+    for i in range(len(seq_1)):
+        if(seq_1[i] == seq_2[i]): continue
+        if purines.get(seq_1[i]) is not None:
+            if purines.get(seq_2[i]) is not None: transitions += 1
+            else: transversions += 1;
+        else:
+            if pyrimidines.get(seq_2[i]) is not None: transitions += 1
+            else: transversions += 1;
+    result = "No transversions found"
+    if transversions and transitions:
+        result = transitions / transversions
+    return f"{result:.11f}"
+with open("rosalind_tran.txt", "r") as file:
+    data = {};
+    seq_data = file.readlines()
+    ros_values = []
+    for index, item in enumerate(seq_data):
+        if(item.strip().startswith(">")):
+            for i in range(index+1, len(seq_data), 1):
+                if(seq_data[i].strip().startswith(">")): break;
+                curr_value = data.get(item.strip());
+                if curr_value is not None:
+                    data[item.strip()] = curr_value + seq_data[i].strip();
+                else:
+                    data[item.strip()] = seq_data[i].strip();
+            ros_values.append(item.strip())
+    sequences = []
+    for ros in ros_values:
+        sequences.append(data.get(ros));
+    print(rosalind_tran(sequences))
+                
