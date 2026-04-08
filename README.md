@@ -1,12 +1,10 @@
-# Transitions and Transversions
+# Completing a Tree
 
-> Given two DNA sequences in FASTA format, in this problem we have to analyze ratio of transitions and transverstions mutation
-> First read FASTA file, and loop and check each letter of sequence and compare with each other, then if first letter of seq_1 is purins, then check seq_1 to purins and pyrimidines. Add +1 to transitions if letter in same index seq_1 and seq_2 are same type of mutation (purins <-> purins, pyrimidines <-> pyrimidines). But they differs of single mutation type, then we must add +1 to transversions variable
+> Given positive integer up to 1000, and a pair list, which gives the number of edges
 
 ---
+>The tree often used for determine diseases for each other, it used to genetic relationships of something like Virus, or generation diseases
 
-- **Transitions:** $A \leftrightarrow G$ or $C \leftrightarrow T$
-- **Transversions:** $A/G \leftrightarrow C/T$
 
 ## Table of contents
 
@@ -17,15 +15,14 @@
 ---
 
 ## About
-
-With this problem we can find is the mutation has came from nature or laboratory experiment, and compare two life for acquiring they divide times
+The tree problem wants to identify minimum number of edges that can be added to produce a tree. Tree means, hierarchy of one life. If the number 'n' is given as 10, then total edges would be 9 'n-1', so with length of lists we can get the minimal missing edges, if pairs are 6, then answer would be **3**, so '9-6=3' 
 
 ## Algorithm Steps
 
-1. **Read FASTA file:** Big(len(lines))
-2. **Initializing variables**
-3. **Check each letter in same index**
-4. **Compare it's letter to transitions and transversions**
+1. **Read data as file.read().strip().split():**
+2. **First number of list would be n, total edges are n-1**
+3. **Get (len(list)-1) for each circle, and divide by 2 for pairs**
+4. **Print total edges - pairs**
 
 ## Install
 
